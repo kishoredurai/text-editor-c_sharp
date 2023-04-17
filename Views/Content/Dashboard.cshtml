@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<ContentModel>
+
+<style>
+ .head a{
+		float:right;
+	}
+</style>
+<div class="container mt-3 head">
+	<h1 class="text-center">Text Editor</h1>
+	
+	<a asp-action="NewFile" class="btn btn-primary float-right mb-3">New File</a>
+
+	<table class="table table-bordered">
+		<thead class="table-dark">
+			<tr>
+				<th>File No.</th>
+				<th>File Name</th>
+				<th>File Owner</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody class="table-striped">
+			 @foreach (ContentModel obj in Model)
+        {
+			
+			<tr>
+				<td>@obj.FileId</td>
+				<td>@obj.FileName</td>
+				<td>@obj.FileOwner</td>
+					<td class="d-flex justify-content-center">
+						<a href="/Content/EditFile?id=@obj.FileId" class="btn btn-primary mr-2">Edit</a>&nbsp;&nbsp;
+						<a class="btn btn-danger mr-2" onclick="getConfirmation('@obj.FileId')">Delete</a>&nbsp;&nbsp;
+						<a class="btn btn-success mr-2 ">Download</a>
+				</td>
+			</tr>
+
+		}
+			<!-- Add more rows as needed -->
+		</tbody>
+	</table>
+</div>
+
+
+
+
+
+
+
+@*delete confirmation*@
+
+		<script>
+
+	function getConfirmation(id) {
+		if (confirm("Are you sure of deleting this data?")) {
+			location.replace("/Content/DeleteFile?id=" + id);
+		}
+	}
+
+		</script>
