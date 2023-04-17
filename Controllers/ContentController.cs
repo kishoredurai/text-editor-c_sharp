@@ -81,7 +81,12 @@ namespace TextEditor.Controllers
 				SqlDataReader reader = sqlCommands.ExecuteReader();
 				while (reader.Read())
 				{
-					errorMessage = "File Name already Exsist";
+					string alertMessage = "Your alert message goes here!";
+
+					ViewData["alertMessage"] = alertMessage;
+
+					Console.WriteLine("alert cant insert");
+
 					return RedirectToAction("NewFile");
 
 				}

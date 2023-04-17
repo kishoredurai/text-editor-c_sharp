@@ -2,13 +2,16 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-@if (Model.errorMessage.Length > 0)
+@if (ViewData["alertMessage"] != null)
 {
+	<p>hi</p>
 	<script>
-		alert(@Model.errorMessage);
-		</script>
-
-
+		function showAlert() {
+			var alertMessage = '@ViewData["alertMessage"]';
+			alert(alertMessage);
+		}
+		showAlert();
+	</script>
 }
 <script src="https://cdn.tiny.cloud/1/your-api-key/tinymce/5/tinymce.min.js"></script>
 <!-- TinyMCE init script -->
